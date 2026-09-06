@@ -11,12 +11,25 @@ ran it over three open PhysioNet cohorts: 801,792 fits, no failures.
 ## Install
 
 ```bash
-pip install -e .
+pip install specurve
 ```
 
-Requires Python 3.10 or later, with numpy, scipy, pandas and joblib. `pyarrow` is needed to read
-and write the grid files, `matplotlib` only for the figure scripts, and `wfdb` only to fetch the
+That gives you the package. To reproduce the study, clone the repository and install the extras
+the analysis scripts need:
+
+```bash
+git clone https://github.com/SamirHossain099/specurve
+cd specurve
+pip install -e ".[data,plot,dev]"
+```
+
+Requires Python 3.10 or later, with numpy, scipy, pandas and joblib. `pyarrow` reads and writes
+the grid files, `matplotlib` is needed only for the figure scripts, and `wfdb` only to fetch the
 data. Developed and tested on Python 3.12; earlier versions are declared but not exercised.
+
+The published package is the two library layers and nothing else. The analysis scripts, the
+pre-registered grid and the result tables are in this repository and in the Zenodo archive, not on
+PyPI.
 
 ## The package
 
@@ -129,7 +142,8 @@ are post hoc and labelled: the record-length control and the interaction decompo
 
 ## Citing this
 
-Archived at Zenodo: [doi:10.5281/zenodo.22490156](https://doi.org/10.5281/zenodo.22490156).
+On PyPI as [`specurve`](https://pypi.org/project/specurve/), and archived at Zenodo under
+[doi:10.5281/zenodo.22490156](https://doi.org/10.5281/zenodo.22490156).
 That is the concept DOI and always resolves to the latest release; each release also gets its own
 version DOI. `CITATION.cff` carries the machine-readable metadata, and GitHub's "Cite this
 repository" button reads it.

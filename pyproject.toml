@@ -41,6 +41,21 @@ Issues = "https://github.com/SamirHossain099/specurve/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/specurve"]
 
+# Deny by default, exactly as .gitignore does, and for a sharper reason: hatchling does NOT read
+# .gitignore, so without this the sdist swallowed the whole working directory. The first build
+# was 135 MB unpacked and contained submission correspondence, a named reviewer list, project
+# strategy, both manuscripts, 78 MB of intermediate grids and node_modules. A PyPI upload cannot
+# be taken back, so the sdist ships the package and nothing else. The study, its data and its
+# tests live in the repository and the Zenodo archive.
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/specurve",
+    "README.md",
+    "LICENSE",
+    "CITATION.cff",
+    "pyproject.toml",
+]
+
 [tool.ruff]
 line-length = 100
 target-version = "py310"
