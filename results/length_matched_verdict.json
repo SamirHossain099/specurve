@@ -1,0 +1,25 @@
+{
+  "matched_length": 4731,
+  "verdict": {
+    "alpha": {
+      "aging": {
+        "top_axis": "s_min",
+        "top_eta_sq": 0.1826
+      },
+      "disease": {
+        "top_axis": "ectopic",
+        "top_eta_sq": 0.8455
+      }
+    },
+    "delta_alpha": {
+      "aging": {
+        "top_axis": "ectopic",
+        "top_eta_sq": 0.6869
+      },
+      "disease": {
+        "top_axis": "ectopic",
+        "top_eta_sq": 0.8434
+      }
+    }
+  }
+}

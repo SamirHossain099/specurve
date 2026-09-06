@@ -1,0 +1,58 @@
+{
+  "cohort": "fantasia",
+  "record": "f2y05",
+  "prefix": 1000,
+  "threshold": 0.2,
+  "case": {
+    "n": 1000,
+    "frac_successive_over_threshold": 0.005005005005005005,
+    "kept_last_accepted": 94,
+    "kept_previous_raw": 995,
+    "retention_last_accepted": 0.094,
+    "retention_previous_raw": 0.995,
+    "first_deleted_index": 89,
+    "first_deleted_value_ms": 1524.0,
+    "deletion_run_starts_at": 96,
+    "deletion_run_length": 904,
+    "deletion_runs_to_end": true,
+    "latch_index": 95,
+    "latch_value_ms": 1088.0,
+    "reference_frozen_at_ms": 1088.0,
+    "median_rr_after_latch_ms": 768.0
+  },
+  "cohort_retention_last_accepted": {
+    "n_records": 40,
+    "min": 0.094,
+    "median": 0.998,
+    "mean": 0.959125,
+    "max": 1.0,
+    "n_below_half": 1
+  },
+  "worst_five": [
+    {
+      "record": "f2y05",
+      "last_accepted": 0.094,
+      "previous_raw": 0.995
+    },
+    {
+      "record": "f1y07",
+      "last_accepted": 0.889,
+      "previous_raw": 0.965
+    },
+    {
+      "record": "f2y08",
+      "last_accepted": 0.913,
+      "previous_raw": 0.948
+    },
+    {
+      "record": "f2y02",
+      "last_accepted": 0.923,
+      "previous_raw": 0.987
+    },
+    {
+      "record": "f1y06",
+      "last_accepted": 0.944,
+      "previous_raw": 0.995
+    }
+  ]
+}

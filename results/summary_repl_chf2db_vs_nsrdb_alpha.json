@@ -1,0 +1,91 @@
+{
+  "contrast": [
+    "chf2db",
+    "nsrdb"
+  ],
+  "summary": {
+    "n_specs": 9216,
+    "d_median": 0.6873597344661597,
+    "d_min": -2.378378716097953,
+    "d_max": 2.04332555305702,
+    "d_iqr": [
+      -0.5986334636968703,
+      1.3476017109818066
+    ],
+    "frac_p05": 0.81640625,
+    "frac_positive": 0.6783854166666666,
+    "frac_sig_positive": 0.5564236111111112,
+    "frac_sig_negative": 0.2599826388888889,
+    "sign_flips": true,
+    "common_n": 32,
+    "common_d_median": 0.1466217048086763,
+    "common_d_range": [
+      -1.407711270265279,
+      1.5592802578602039
+    ]
+  },
+  "permutation": {
+    "observed_median_d": 0.6873597344661597,
+    "p_perm": 0.003996003996003996,
+    "null_mean": 0.006596921878714413,
+    "null_sd": 0.19754062388605007,
+    "n_perm": 1000,
+    "positive_group": "chf2db",
+    "groups": [
+      "chf2db",
+      "nsrdb"
+    ]
+  },
+  "variance": [
+    {
+      "axis": "ectopic",
+      "eta_sq": 0.7495970653779694,
+      "n_levels": 4
+    },
+    {
+      "axis": "order",
+      "eta_sq": 0.07327579558673053,
+      "n_levels": 4
+    },
+    {
+      "axis": "detrend",
+      "eta_sq": 0.03635071132894306,
+      "n_levels": 3
+    },
+    {
+      "axis": "s_max_frac",
+      "eta_sq": 0.001785039049564113,
+      "n_levels": 3
+    },
+    {
+      "axis": "s_min",
+      "eta_sq": 0.00043023173854084057,
+      "n_levels": 2
+    },
+    {
+      "axis": "overlap",
+      "eta_sq": 8.984070196653837e-05,
+      "n_levels": 2
+    },
+    {
+      "axis": "n_scales",
+      "eta_sq": 5.741508528469005e-05,
+      "n_levels": 2
+    },
+    {
+      "axis": "spacing",
+      "eta_sq": 1.4635556284643664e-05,
+      "n_levels": 2
+    },
+    {
+      "axis": "normalise",
+      "eta_sq": 2.678209234518326e-16,
+      "n_levels": 2
+    },
+    {
+      "axis": "q_grid",
+      "eta_sq": 0.0,
+      "n_levels": 2
+    }
+  ]
+}

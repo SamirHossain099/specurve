@@ -1,0 +1,34 @@
+{
+  "fantasia_alpha": {
+    "label": "Fantasia (aging), alpha",
+    "sum_main_eta_sq": 0.6032,
+    "sum_two_way_eta_sq": 0.3483,
+    "largest_interaction": "order x s_max_frac",
+    "largest_interaction_eta_sq": 0.1251,
+    "ectopic_x_s_max_frac": 0.0031
+  },
+  "fantasia_delta_alpha": {
+    "label": "Fantasia (aging), delta-alpha",
+    "sum_main_eta_sq": 0.7896,
+    "sum_two_way_eta_sq": 0.1926,
+    "largest_interaction": "ectopic x order",
+    "largest_interaction_eta_sq": 0.147,
+    "ectopic_x_s_max_frac": 0.007
+  },
+  "disease_alpha": {
+    "label": "Disease, alpha",
+    "sum_main_eta_sq": 0.8616,
+    "sum_two_way_eta_sq": 0.1064,
+    "largest_interaction": "detrend x order",
+    "largest_interaction_eta_sq": 0.0409,
+    "ectopic_x_s_max_frac": 0.0027
+  },
+  "disease_delta_alpha": {
+    "label": "Disease, delta-alpha",
+    "sum_main_eta_sq": 0.6647,
+    "sum_two_way_eta_sq": 0.2121,
+    "largest_interaction": "ectopic x order",
+    "largest_interaction_eta_sq": 0.1009,
+    "ectopic_x_s_max_frac": 0.0047
+  }
+}

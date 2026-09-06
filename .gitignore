@@ -1,0 +1,57 @@
+# Deny by default, then allow. Nothing is committed unless it is named below.
+#
+# The usual way round (list what to ignore) fails open: a file added later that nobody remembers
+# to ignore gets published. This directory holds submission correspondence, a named reviewer list
+# and project strategy, so it fails closed instead. Adding a file to the public repository is a
+# deliberate act of editing this file.
+#
+# `git status --ignored` shows what is being held back. `git ls-files` shows what will ship.
+
+*
+
+# ------------------------------------------------------------------ top level
+!/.gitignore
+!/README.md
+!/LICENSE
+!/pyproject.toml
+!/ruff.toml
+!/PREREGISTRATION.md
+
+# ------------------------------------------------------------------ the package and the analysis
+!/src/
+/src/*
+!/src/mfdfa_multiverse/
+/src/mfdfa_multiverse/*
+!/src/mfdfa_multiverse/*.py
+
+!/src/analyze.py
+!/src/data.py
+!/src/ectopic_case.py
+!/src/estimate_cost.py
+!/src/figure_ectopic.py
+!/src/figure_length.py
+!/src/figures.py
+!/src/interactions.py
+!/src/length_control.py
+!/src/mfdfa.py
+!/src/preprocess.py
+!/src/replicate.py
+!/src/resources.py
+!/src/run_grid.py
+!/src/specs.py
+# NOT src/make_refs.py, make_docx.py, make_docx.js, make_manuscript.py: manuscript tooling, and
+# the only files in src/ carrying a personal Zotero library id, email address and ORCID.
+
+!/tests/
+/tests/*
+!/tests/*.py
+
+# ------------------------------------------------------------------ results a reader can check
+# Summaries, per-specification effect tables, the variance and interaction decompositions and the
+# length ladder: about 5 MB, enough to verify every number in sections 3 to 5 with no refitting.
+# The raw per-fit grids (results/*.parquet, 70 MB) are regenerable from src/ in about 2.5 CPU
+# hours and go in the Zenodo deposit rather than here.
+!/results/
+/results/*
+!/results/*.csv
+!/results/*.json
