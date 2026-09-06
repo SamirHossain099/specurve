@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+title: "specurve: specification-curve analysis for parameterised estimators"
+message: >-
+  If you use this software, please cite it using the metadata below. When the
+  accompanying study is published, cite the paper as well; its reference will be
+  added here on acceptance.
+type: software
+authors:
+  - given-names: Samir
+    family-names: Hossain
+    orcid: "https://orcid.org/0009-0003-8986-0946"
+    affiliation: >-
+      Department of Electrical and Computer Engineering, Texas Tech University
+    email: samir.hossain@ttu.edu
+repository-code: "https://github.com/SamirHossain099/specurve"
+abstract: >-
+  Specification-curve (multiverse) analysis for estimators whose parameters are
+  chosen rather than derived, with detrended fluctuation analysis and its
+  multifractal extension as the worked case. The grid runner and the curve
+  analysis are estimator-agnostic: they take a mapping of analytic choices to
+  levels and any callable that turns one specification plus one series into a
+  set of estimates, then produce the specification curve, joint inference on
+  the median effect across specifications, and one-way and two-way variance
+  decompositions identifying which unreported choice moves a result most. Four
+  properties are enforced rather than left to the caller: nothing defaults
+  silently, failures are recorded rather than dropped, there is exactly one
+  definition of the effect size, and a non-finite observed statistic never
+  yields a p-value.
+keywords:
+  - specification curve
+  - multiverse analysis
+  - detrended fluctuation analysis
+  - multifractal analysis
+  - heart rate variability
+  - analytic flexibility
+  - reproducibility
+  - reporting standards
+license: MIT
+version: 0.1.0
+date-released: "2026-09-06"

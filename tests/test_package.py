@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(ROOT, "src"))
 
 import mfdfa as legacy_mfdfa  # noqa: E402
 import preprocess as legacy_pre  # noqa: E402
-from mfdfa_multiverse import curve, dfa, grid  # noqa: E402
+from specurve import curve, dfa, grid  # noqa: E402
 
 QS = np.arange(-5, 5.1, 1.0)
 

@@ -16,13 +16,14 @@
 !/pyproject.toml
 !/ruff.toml
 !/PREREGISTRATION.md
+!/CITATION.cff
 
 # ------------------------------------------------------------------ the package and the analysis
 !/src/
 /src/*
-!/src/mfdfa_multiverse/
-/src/mfdfa_multiverse/*
-!/src/mfdfa_multiverse/*.py
+!/src/specurve/
+/src/specurve/*
+!/src/specurve/*.py
 
 !/src/analyze.py
 !/src/data.py

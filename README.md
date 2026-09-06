@@ -1,4 +1,4 @@
-# mfdfa-multiverse
+# specurve
 
 Specification-curve (multiverse) analysis for estimators whose parameters are chosen rather than
 derived, with detrended fluctuation analysis and its multifractal extension as the worked case.
@@ -27,7 +27,7 @@ callable that turns one specification plus one series into a dict of estimates. 
 pipeline whose parameters go unreported.
 
 ```python
-from mfdfa_multiverse import grid, curve, dfa
+from specurve import grid, curve, dfa
 
 AXES = {"ectopic": ["none", "pct20_drop"], "detrend": ["none", "linear"],
         "normalise": ["none", "zscore"], "order": [1, 2], "s_min": [16],
@@ -127,10 +127,13 @@ about 2.5 CPU hours, and they are in the archived deposit.
 published practice, the analysis plan, and every deviation with its date and reason. Two analyses
 are post hoc and labelled: the record-length control and the interaction decomposition.
 
-## Paper
+## Citing this
 
-A manuscript describing the study is under review. Citation details will be added here on
-acceptance.
+`CITATION.cff` carries the machine-readable metadata, and GitHub's "Cite this repository" button
+reads it. An archived release with a DOI is being minted; the DOI will be added here and to
+`CITATION.cff` when it exists.
+
+A manuscript describing the study is under review. Its reference will be added on acceptance.
 
 ## License
 

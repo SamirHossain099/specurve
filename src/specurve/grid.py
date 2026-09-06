@@ -20,7 +20,7 @@ the three properties it enforces, all of which were bugs before they were rules:
 
 Example
 -------
-    from mfdfa_multiverse import grid
+    from specurve import grid
 
     AXES = {"window": [16, 32, 64], "detrend": ["none", "linear"]}
 

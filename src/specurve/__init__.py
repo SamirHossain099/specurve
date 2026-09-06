@@ -1,4 +1,4 @@
-"""mfdfa-multiverse -- specification-curve (multiverse) analysis for parameterised estimators.
+"""specurve -- specification-curve (multiverse) analysis for parameterised estimators.
 
 Two layers, deliberately separated:
 
@@ -21,7 +21,7 @@ The design rules the package enforces, each of which was a bug before it was a r
 
 Minimal use::
 
-    from mfdfa_multiverse import grid, curve, dfa
+    from specurve import grid, curve, dfa
 
     AXES = {"ectopic": ["none", "pct20_drop"], "detrend": ["none", "linear"],
             "normalise": ["none"], "order": [1, 2], "s_min": [16],

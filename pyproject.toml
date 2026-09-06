@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mfdfa-multiverse"
+name = "specurve"
 version = "0.1.0"
 description = "Specification-curve (multiverse) analysis for DFA/MFDFA pipelines on physiological time series"
 readme = "README.md"
@@ -35,11 +35,11 @@ plot = ["matplotlib>=3.6"]
 dev = ["pytest>=7", "ruff>=0.4"]
 
 [project.urls]
-Homepage = "https://github.com/SamirHossain099/mfdfa-multiverse"
-Issues = "https://github.com/SamirHossain099/mfdfa-multiverse/issues"
+Homepage = "https://github.com/SamirHossain099/specurve"
+Issues = "https://github.com/SamirHossain099/specurve/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mfdfa_multiverse"]
+packages = ["src/specurve"]
 
 [tool.ruff]
 line-length = 100
