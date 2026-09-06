@@ -129,9 +129,10 @@ are post hoc and labelled: the record-length control and the interaction decompo
 
 ## Citing this
 
-`CITATION.cff` carries the machine-readable metadata, and GitHub's "Cite this repository" button
-reads it. An archived release with a DOI is being minted; the DOI will be added here and to
-`CITATION.cff` when it exists.
+Archived at Zenodo: [doi:10.5281/zenodo.22490156](https://doi.org/10.5281/zenodo.22490156).
+That is the concept DOI and always resolves to the latest release; each release also gets its own
+version DOI. `CITATION.cff` carries the machine-readable metadata, and GitHub's "Cite this
+repository" button reads it.
 
 A manuscript describing the study is under review. Its reference will be added on acceptance.
 

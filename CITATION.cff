@@ -1,7 +1,8 @@
 cff-version: 1.2.0
 title: "specurve: specification-curve analysis for parameterised estimators"
 message: >-
-  If you use this software, please cite it using the metadata below. When the
+  If you use this software, please cite it using the metadata below. The DOI is
+  the concept DOI, which always resolves to the latest release. When the
   accompanying study is published, cite the paper as well; its reference will be
   added here on acceptance.
 type: software
@@ -13,6 +14,7 @@ authors:
       Department of Electrical and Computer Engineering, Texas Tech University
     email: samir.hossain@ttu.edu
 repository-code: "https://github.com/SamirHossain099/specurve"
+doi: "10.5281/zenodo.22490156"
 abstract: >-
   Specification-curve (multiverse) analysis for estimators whose parameters are
   chosen rather than derived, with detrended fluctuation analysis and its
