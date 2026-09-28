@@ -99,7 +99,14 @@ python src/replicate.py --cohorts nsrdb chf2db
 python src/interactions.py                    # two-way decomposition
 python src/length_control.py                  # record-length ladder, about 2.5 h, resumable
 python src/figures.py all && python src/figure_length.py && python src/ectopic_case.py
+python src/synthetic.py                       # known-truth arm, about 7 min
+python src/figure_synthetic.py
 ```
+
+`src/synthetic.py` runs the same frozen grid against fractional Gaussian noise generated at known
+Hurst exponents, so each specification can be scored as bias rather than as spread, and injects
+ectopic beats at known positions to score the editing rules against a clean answer. It is the only
+part of the study with ground truth.
 
 `src/estimate_cost.py` benchmarks a cohort before you commit to its full grid. `src/resources.py`
 caps BLAS threads before numpy loads and must be imported first in every entry point; a test
@@ -117,6 +124,8 @@ Enough to check every number in the paper's sections 3 to 5 without refitting an
 | `interactions.csv`, `interactions_summary.json` | every two-way interaction, all four cells |
 | `length_ladder.csv`, `length_eta.csv`, `length_matched_verdict.json` | the record-length control |
 | `ectopic_case.json` | the 20 percent rule latch, measured |
+| `synthetic_bias_by_level.csv`, `synthetic_summary.json` | bias in the recovered exponent per axis level, against series generated at known H |
+| `synthetic_ectopic.csv`, `synthetic_ectopic_summary.csv` | injected ectopy against each editing rule, scored on the clean exponent |
 
 The raw per-fit grids (`results/*.parquet`, 70 MB) are not in git. They regenerate from `src/` in
 about 2.5 CPU hours, and they are in the archived deposit.
@@ -125,6 +134,9 @@ about 2.5 CPU hours, and they are in the archived deposit.
 
 - The analysis stage is deterministic: re-running it from the cached grids reproduces all eight
   shipped result files byte for byte. The permutation test is seeded.
+- The estimator is unbiased where the answer is known: on fractional Gaussian noise at H = 0.6 to
+  0.9, the median bias at conventional settings is −0.0002 across 737,280 fits, while the recovered
+  exponent of one series spans 0.30 across the grid.
 - 801,792 fits across the three primary grids, **zero failures**. A specification yielding fewer
   than 200 usable samples or fewer than 4 valid scales is counted as a failure rather than dropped,
   so that is a real zero and not a filtered one.

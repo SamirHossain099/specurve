@@ -130,6 +130,21 @@ def test_draft_permutation_p_values_match_results(name, pattern):
     assert float(re.search(pattern, draft_text()).group().split("=")[1]) == pytest.approx(p, abs=5e-4)
 
 
+def test_the_width_split_is_described_in_the_direction_the_sign_means():
+    """CORRECTIONS.md C9. d is young minus elderly, so a significant NEGATIVE effect on the width
+    is a significant INCREASE with age. The submitted abstract had the two words swapped while the
+    percentages were right, and no test looked at the words."""
+    s = load("fantasia_delta_alpha")["summary"]
+    inc, dec = s["frac_sig_negative"], s["frac_sig_positive"]
+    assert inc > dec
+    t = draft_text()
+    ab = t[t.index("## Abstract"):t.index("**Keywords:**")]
+    want = re.sub(r"\s+", r"\\s+",
+                  rf"{100 * inc:.1f}% of specifications showed a significant increase with age "
+                  rf"and {100 * dec:.1f}% a significant decrease")
+    assert re.search(want, ab), "abstract no longer states the width split in the right direction"
+
+
 def test_draft_has_no_unresolved_ladder_placeholders_once_ladder_is_complete():
     """While the length ladder is running the draft carries [LADDER] markers. Once the ladder
     file reports every planned cell, the draft must not still be quoting placeholders."""
@@ -203,22 +218,34 @@ def test_no_em_dashes(name):
 
 
 def test_abstract_is_within_the_journals_limit():
-    """Physiological Measurement rescinds manuscripts whose abstract exceeds 300 words."""
+    """European Journal of Applied Physiology: a structured abstract of 150 to 250 words."""
     text = draft_text()
     ab = text[text.index("## Abstract"):text.index("**Keywords:**")]
     words = len(re.findall(r"\S+", re.sub(r"[*`]", "", ab.replace("## Abstract", ""))))
-    assert words <= 300, f"abstract is {words} words"
+    assert 150 <= words <= 250, f"abstract is {words} words"
 
 
-def test_abstract_is_structured_with_the_journals_headings():
+def test_the_abstract_carries_no_bold_run_in_labels():
+    """House rule, and the reference layout in RESEARCH.md section 11: the abstract runs as prose.
+    It carried Purpose/Methods/Results/Conclusion heads while a venue that wanted them was the
+    target."""
     text = draft_text()
     ab = text[text.index("## Abstract"):text.index("**Keywords:**")]
-    for head in ("**Objective.**", "**Approach.**", "**Main results.**", "**Significance.**"):
-        assert head in ab, f"missing {head}"
+    assert "**" not in ab, "bold label in the abstract"
+
+
+def test_keywords_and_abbreviations_follow_the_journal():
+    """4 to 6 keywords, then an alphabetical abbreviation list."""
+    text = draft_text()
+    kw = text[text.index("**Keywords:**"):].split("\n\n")[0].replace("**Keywords:**", "")
+    assert 4 <= len([k for k in kw.split(";") if k.strip()]) <= 6
+    abbr = text[text.index("## Abbreviations"):].split("\n\n")[1]
+    terms = [ln[2:].split(":")[0] for ln in abbr.splitlines() if ln.startswith("- ")]
+    assert terms and terms == sorted(terms, key=str.lower), terms
 
 
 def test_abstract_cites_nothing_and_names_no_float():
-    """IOP: no references, table numbers, figure numbers or equations in the abstract."""
+    """No references, table numbers, figure numbers or equations in the abstract."""
     text = draft_text()
     ab = text[text.index("## Abstract"):text.index("**Keywords:**")]
     assert not re.search(r"\[-?@[a-z0-9_]+", ab), "abstract carries a citation"
@@ -300,3 +327,61 @@ def test_the_replication_table_carries_a_matched_length_column():
     """The retraction has to be in the table, not only in the prose under it."""
     t = draft_text()
     assert "Disease, α, matched length" in t
+
+
+def test_the_scale_range_direction_matches_the_effect_table():
+    """An earlier draft said N/20 sat at the negative end of the curve and N/4 at the positive
+    end; the effect table says the opposite. The direction is asserted against results/, never
+    against the sentence, so the prose cannot drift back."""
+    import pandas as pd
+    path = os.path.join(RESULTS, "effects_alpha.csv")
+    if not os.path.exists(path):
+        pytest.skip("effects_alpha.csv not present")
+    e = pd.read_csv(path).sort_values("d").reset_index(drop=True)
+    means = e.groupby("s_max_frac").d.mean()
+    assert means[0.25] < means[0.10] < means[0.05], means.to_dict()
+    low = e.head(len(e) // 10).s_max_frac.value_counts(normalize=True)
+    assert low.idxmax() == 0.25, low.to_dict()
+    t = draft_text()
+    assert f"{100 * low[0.25]:.1f}%" in t, "the decile share quoted in 3.1 is not the one in results/"
+    assert "N/20 concentrates at the negative end" not in t
+
+
+# ---------------------------------------------------------------------------------------------
+# The synthetic arm (section 3.9). Reads results/synthetic_summary.json and the ectopic CSV.
+# ---------------------------------------------------------------------------------------------
+
+def synthetic():
+    path = os.path.join(RESULTS, "synthetic_summary.json")
+    if not os.path.exists(path):
+        pytest.skip("synthetic arm not run; python src/synthetic.py")
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def test_the_draft_quotes_the_synthetic_fit_count_and_span():
+    s = synthetic()
+    t = draft_text()
+    assert f"{s['n_fits']:,} fits" in t, s["n_fits"]
+    assert f"{s['median_span_within_series']:.3f}" in t, s["median_span_within_series"]
+
+
+def test_the_unbiasedness_claim_matches_the_summary():
+    """The section leads on the estimator being unbiased at conventional settings. If that stops
+    being true the sentence has to go, so it is asserted rather than quoted."""
+    s = synthetic()
+    assert abs(s["conventional_bias"]) < 0.001
+    assert f"{s['conventional_bias']:.4f}".lstrip("-") in draft_text().replace("\u2212", "-")
+
+
+def test_the_ectopic_arm_numbers_in_the_draft_are_the_measured_ones():
+    import pandas as pd
+    path = os.path.join(RESULTS, "synthetic_ectopic.csv")
+    if not os.path.exists(path):
+        pytest.skip("ectopic arm not run")
+    ect = pd.read_csv(path)
+    t = draft_text()
+    for rate in (0.01, 0.05):
+        m = ect[ect.rate == rate].groupby("ectopic").bias.apply(lambda x: x.abs().mean())
+        for level in ("none", "pct20_drop", "pct20_interp", "mad4_drop"):
+            assert f"{m[level]:.3f}" in t, (rate, level, m[level])

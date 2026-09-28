@@ -144,3 +144,19 @@ the identity on every shipped result file.
 Effect on reported numbers: Fantasia is unchanged (alpha p = 0.170, delta-alpha p = 0.002). The
 disease contrast's observed medians become 0.687 (alpha, p = 0.004, unchanged) and 0.487
 (delta-alpha, **p = 0.004, was 0.001**).
+
+### D4: 2026-09-28: synthetic series with a known exponent (post hoc)
+
+The pre-registered design measures how far an estimate moves across the grid. It cannot say which
+direction is wrong, because the three cohorts have no ground truth. `src/synthetic.py` adds series
+that do: fractional Gaussian noise generated at Hurst exponents 0.6, 0.7, 0.8 and 0.9 by the
+Davies-Harte method, at the median length of the primary cohort, with alpha = H by construction.
+The frozen grid runs against them unchanged, and every estimate is scored as bias rather than as
+spread. A second arm injects ectopic beats at known positions and rates into those series, then
+scores the four ectopic levels against the clean exponent, which measures the mechanism section 5.1
+argues from the literature.
+
+This is post hoc and is reported as such. It was added after the primary analysis was complete, to
+answer the question any estimator study invites: how the estimator behaves where the answer is
+known. Nothing in the grid, the cohorts or the primary analysis changes; the arm adds a section and
+a figure and cannot alter a pre-registered result.

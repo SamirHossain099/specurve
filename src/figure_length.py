@@ -72,7 +72,8 @@ def effect_vs_length(lad, out=f"{FIGDIR}/fig3_length_effect.png"):
                  fontsize=11.5, y=1.02)
     fig.tight_layout()
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    fig.savefig(out, dpi=185, bbox_inches="tight")
+    fig.savefig(out, dpi=600, bbox_inches="tight")
+    fig.savefig(str(out).rsplit(".", 1)[0] + ".pdf", bbox_inches="tight")  # vector copy
     print(f"wrote {out}")
     return out
 
@@ -138,7 +139,8 @@ def eta_vs_length(out=f"{FIGDIR}/fig4_length_variance.png", metrics=("alpha", "d
     fig.suptitle("Which analytic choice dominates is itself a function of record length",
                  fontsize=11.5, y=1.02)
     fig.tight_layout()
-    fig.savefig(out, dpi=185, bbox_inches="tight")
+    fig.savefig(out, dpi=600, bbox_inches="tight")
+    fig.savefig(str(out).rsplit(".", 1)[0] + ".pdf", bbox_inches="tight")  # vector copy
     print(f"wrote {out}  (and results/length_eta.csv)")
     return out
 

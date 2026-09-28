@@ -40,12 +40,17 @@
 !/src/resources.py
 !/src/run_grid.py
 !/src/specs.py
+!/src/synthetic.py
+!/src/figure_synthetic.py
 # NOT src/make_refs.py, make_docx.py, make_docx.js, make_manuscript.py: manuscript tooling, and
 # the only files in src/ carrying a personal Zotero library id, email address and ORCID.
 
 !/tests/
 /tests/*
 !/tests/*.py
+# NOT tests/test_prose.py: it drives the manuscript scanners, which are not published
+# either, and its docstrings carry editorial correspondence.
+/tests/test_prose.py
 
 # ------------------------------------------------------------------ results a reader can check
 # Summaries, per-specification effect tables, the variance and interaction decompositions and the

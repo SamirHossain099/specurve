@@ -118,7 +118,8 @@ def draw(record="f2y05", cohort="fantasia", n=1000, out=f"{FIGDIR}/fig5_ectopic_
         fontsize=11, y=1.06)
     fig.tight_layout()
     os.makedirs(FIGDIR, exist_ok=True)
-    fig.savefig(out, dpi=185, bbox_inches="tight")
+    fig.savefig(out, dpi=600, bbox_inches="tight")
+    fig.savefig(str(out).rsplit(".", 1)[0] + ".pdf", bbox_inches="tight")  # vector copy
     print(f"wrote {out}")
     return out
 
